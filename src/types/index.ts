@@ -37,8 +37,13 @@ export type UserDoc = Omit<User, "id"> & {
   password: string;
 };
 
-export type ClaimDoc = Omit<Claim, "id" | "claimantId"> & {
+export type ItemDoc = Omit<Item, "id">;
+
+export type ClaimDoc = Omit<Claim, "id" | "claimantId" | "itemId"> & {
   claimantId: Types.ObjectId;
+  itemId: Types.ObjectId;
 };
 
-export type NewClaimBody = Pick<Claim, "itemId" | "contactEmail">;
+export type NewClaimBody = Pick<Claim, "contactEmail"> & {
+  itemId: string;
+};

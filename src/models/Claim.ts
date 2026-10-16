@@ -9,9 +9,9 @@ const claimSchema = new Schema<ClaimDoc>({
   },
 
   itemId: {
-    type: Number,
+    type: Schema.Types.ObjectId,
+    ref: "Item",
     required: [true, "itemId is required"],
-    min: [1, "itemId must be 1 or higher"],
   },
 
   contactEmail: {
