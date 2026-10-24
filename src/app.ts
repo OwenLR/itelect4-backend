@@ -10,6 +10,7 @@ import { connectDB } from "./config/db";
 import { authRouter } from "./routes/auth";
 import { itemRouter } from "./routes/items";
 import { claimRouter } from "./routes/claims";
+import { aiRouter } from "./routes/ai";
 
 export const app = express();
 
@@ -34,6 +35,7 @@ app.get("/api/health", (_req: Request, res: Response) => {
 app.use("/api/auth", authRouter);
 app.use("/api/items", itemRouter);
 app.use("/api/claims", claimRouter);
+app.use("/api/ai", aiRouter);
 
 app.use((req: Request, res: Response) => {
   res.status(404).json({
