@@ -1,0 +1,26 @@
+name: CI
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      # The same check npm run build does, without writing dist/.
+      - run: npm run typecheck
+
+      # JWT_SECRET comes from the repo's Actions secret, because .env is
+      # not in the repo.
+      - run: npm test
+        env:
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
